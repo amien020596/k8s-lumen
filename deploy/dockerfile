@@ -3,7 +3,6 @@ FROM php:7.4-fpm
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     git \
-    vim \
     libmemcached-dev \
     libz-dev \
     libpq-dev \
@@ -16,6 +15,7 @@ RUN apt-get update \
     unzip \
     zip \
     nodejs \
+    nginx \
     && docker-php-ext-configure gd \
     && docker-php-ext-configure zip \
     && docker-php-ext-install \
@@ -27,13 +27,6 @@ RUN apt-get update \
     pcntl \
     zip \
     && rm -rf /var/lib/apt/lists/*;
-
-RUN apt-get install nano -y
-
-RUN apt-get install supervisor -y
-
-RUN apt-get install -y nginx  && \
-    rm -rf /var/lib/apt/lists/*
 
 COPY . /var/www/html
 WORKDIR /var/www/html
@@ -54,9 +47,7 @@ RUN chmod -R 0777 ./storage
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
-RUN php artisan key:generate
-
-RUN ln -s ./secret/.env .env
+CMD ["php"," artisan", "key",":","generate"]
 
 RUN chmod +x ./deploy/run
 
