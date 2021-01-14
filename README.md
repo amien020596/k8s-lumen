@@ -15,25 +15,25 @@ Clone the project
  [link](https://docs.docker.com/)
 
 ```sh
-docker-compose build
+sudo docker build -t [image name]:[image version] .
 
 ```
-
+for image default is using port 80 
 
 ```sh
-docker-compose up -d
+sudo docker create --name [container name] -p 8080:80 [image name]:[image version]
 
 ```
 
 Now browse project 
 
  ```
- http://localhost:8181/
+ http://[ip host/localhost]:8080/
 
 ```
 ### Important
-
+First you need to run command composer install to install vendor and make sure in your computer installed composer
 ```
-First you need to run command composer install to install vendor 
+composer install 
 ```
  
