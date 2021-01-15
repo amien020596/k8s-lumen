@@ -14,6 +14,11 @@ Clone the project
  Now run the following command from your terminal one by one. Running the commands be sure that you have installed docker.You will get install instructions from this
  [link](https://docs.docker.com/)
 
+in development mode using docker compose
+```
+sudo docker-compose build && sudo docker-compose up -d
+```
+in production mode using docker build 
 ```sh
 sudo docker build -t [image name]:[image version] .
 
@@ -37,3 +42,4 @@ First you need to run command composer install to install vendor and make sure i
 composer install 
 ```
  
+
